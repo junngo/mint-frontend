@@ -22,7 +22,6 @@ const initialState = {
 const auth = (state=initialState, action) => {
     switch(action.type) {
         case SAMPLE_ACTION:
-            console.log("sample action");
             return state;
         default:
             return state;
