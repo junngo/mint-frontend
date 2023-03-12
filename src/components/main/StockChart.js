@@ -24,6 +24,7 @@ ChartJS.register(
 );
 
 const Container = styled(Responsive)`
+    margin-top: 2.3rem;
 `;
 
 const dataLineColor = [
@@ -56,18 +57,29 @@ const getData = stocks => {
     const data = {labels, datasets}
     return data;
 };
-const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'bottom',
+const getOptions = stocks => {
+    
+    let title;
+    if (1 < stocks.length) {
+        title = "종합 차트";
+    } else {
+        title = stocks[0].description;
+    }
+
+    return {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: true,
+                text: title,
+            },
         },
-        title: {
-            display: true,
-            text: 'Chart.js Line Chart',
-        },
-    },
+    }
 };
+
 
 const StockChart = ({ stocks }) => {
     return (
@@ -75,7 +87,7 @@ const StockChart = ({ stocks }) => {
             <Line 
                 type="line"
                 data={getData(stocks)}
-                options={options}
+                options={getOptions(stocks)}
             />
         </Container>
     );

@@ -1,24 +1,23 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../modules/stock';
-import StockChart from "../../components/main/StockChart";
+import PortfolioViewer from '../../components/main/PortfolioViewer';
 
 
 const StockListContainer = ({
     stock,
-    getFeed
+    getPortfolio
 }) => {
     useEffect(() => {
-        getFeed()
-    }, [getFeed]);
+        getPortfolio();
+    }, [getPortfolio]);
 
     return (
         <>
-            {stock.stocks && <StockChart stocks = {stock.stocks}/>}
+            {stock.portfolio && <PortfolioViewer portfolio = {stock.portfolio}/>}
         </>
     );
 };
-
 
 const mapStateToProps = (state, ownProps) => {
     const { stock } = state;
@@ -30,8 +29,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        getFeed: () => {
-            dispatch(actionCreators.getFeed());
+        getPortfolio: () => {
+            dispatch(actionCreators.getPortfolio());
         }
     };
 };
