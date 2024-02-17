@@ -1,0 +1,95 @@
+@import 'variables';
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: $background-color;
+}
+
+.left-nav {
+  width: 250px; // Adjust width of the navigation bar
+  background-color: $primary-color; // Background color
+  color: #fff; // Text color
+  padding: 20px; // Padding inside the navigation bar
+  padding-top: 50px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+
+  // Initially hidden on smaller screens
+  @media (max-width: 768px) {
+    width: 0;
+    padding: 0;
+  }
+
+  // Styles when navigation is visible
+  &.visible {
+    width: 250px;
+    padding: 20px;
+    padding-top: 50px;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: $text-color;
+  }
+
+  ul {
+    list-style: none; // Remove default list styling
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 10px 15px; // Add padding for each list item
+      border-bottom: 1px solid $secondary-color; // Add a border to separate items
+
+      a {
+        display: block;
+        padding: 10px 15px; // Adjust padding as needed
+        border-radius: 5px; // Rounded corners for the links
+        color: #222831; // Set the text color
+        text-decoration: none; // Remove underline from links
+        transition:
+          background-color 0.3s,
+          box-shadow 0.3s;
+
+        &:hover {
+          background-color: #F2F1EB;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Subtle shadow
+        }
+      }
+
+      &:last-child {
+        border-bottom: none; // Remove border for the last item
+      }
+    }
+  }
+}
+
+.main-content {
+  flex-grow: 1; // Allows the main content to take up the remaining space
+  background-color: #fff; // Background color for the content area
+  color: $text-color;
+  padding: 20px; // Padding inside the content area
+  padding-top: 50px;
+}
+
+// Navigation toggle button
+.nav-toggle {
+  display: none; // Hide by default
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: $secondary-color;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 18px;
+
+  // Show the toggle button on smaller screens
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
